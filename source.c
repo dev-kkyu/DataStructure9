@@ -926,7 +926,7 @@ contStone* maxcontview()
 	}
 
 
-	//대각선2 하는중
+	//대각선2
 	contStone tempcontdiag2[50] = { 0 };
 	tempindex = 0;
 
@@ -940,8 +940,8 @@ contStone* maxcontview()
 					if (board[j + 1][j + i + 1] == 1 || board[j + 1][j + i + 1] == 3) {
 						tempcontdiag2[tempindex].startx = j - temp + 2;
 						tempcontdiag2[tempindex].starty = j + i - temp + 2;
-						tempcontdiag2[tempindex].endx = j;
-						tempcontdiag2[tempindex].endy = j + i;
+						tempcontdiag2[tempindex].endx = j + 1;
+						tempcontdiag2[tempindex].endy = j + i + 1;
 						tempcontdiag2[tempindex].color = 1;
 						tempcontdiag2[tempindex++].length = temp;
 						temp = 1;
@@ -949,8 +949,8 @@ contStone* maxcontview()
 					else if (board[j + 1][j + i + 1] == 2 || board[j + 1][j + i + 1] == 4) {
 						tempcontdiag2[tempindex].startx = j - temp + 2;
 						tempcontdiag2[tempindex].starty = j + i - temp + 2;
-						tempcontdiag2[tempindex].endx = j;
-						tempcontdiag2[tempindex].endy = j + i;
+						tempcontdiag2[tempindex].endx = j + 1;
+						tempcontdiag2[tempindex].endy = j + i + 1;
 						tempcontdiag2[tempindex].color = 2;
 						tempcontdiag2[tempindex++].length = temp;
 						temp = 1;
@@ -965,8 +965,8 @@ contStone* maxcontview()
 					if (j == i - 1 && temp != 1) {
 						tempcontdiag2[tempindex].startx = j - temp + 2;
 						tempcontdiag2[tempindex].starty = j + i - temp + 2;
-						tempcontdiag2[tempindex].endx = j;
-						tempcontdiag2[tempindex].endy = j + i;
+						tempcontdiag2[tempindex].endx = j + 1;
+						tempcontdiag2[tempindex].endy = j + i + 1;
 						tempcontdiag2[tempindex].color = 1;
 						tempcontdiag2[tempindex++].length = temp;
 						temp = 1;
@@ -989,8 +989,8 @@ contStone* maxcontview()
 					if (j == i - 1 && temp != 1) {
 						tempcontdiag2[tempindex].startx = j - temp + 2;
 						tempcontdiag2[tempindex].starty = j + i - temp + 2;
-						tempcontdiag2[tempindex].endx = j;
-						tempcontdiag2[tempindex].endy = j + i;
+						tempcontdiag2[tempindex].endx = j + 1;
+						tempcontdiag2[tempindex].endy = j + i + 1;
 						tempcontdiag2[tempindex].color = 2;
 						tempcontdiag2[tempindex++].length = temp;
 						temp = 1;
@@ -1028,14 +1028,207 @@ contStone* maxcontview()
 
 
 
+	//대각선3
+	contStone tempcontdiag3[50] = { 0 };
+	tempindex = 0;
+
+	temp = 1;
+
+	for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↙1 대각선에서 1개 이상 연속인 돌의 정보를 저장
+		for (int j = 0; j < i; j++) {
+			switch (board[j][i - j]) {
+			case 0:
+				if (j == i - 1) {
+					if (board[j + 1][i - j - 1] == 1 || board[j + 1][i - j - 1] == 3) {
+						tempcontdiag3[tempindex].startx = j - temp + 2;
+						tempcontdiag3[tempindex].starty = i - j + temp - 2;
+						tempcontdiag3[tempindex].endx = j + 1;
+						tempcontdiag3[tempindex].endy = i - j - 1;
+						tempcontdiag3[tempindex].color = 1;
+						tempcontdiag3[tempindex++].length = temp;
+						temp = 1;
+					}
+					else if (board[j + 1][i - j - 1] == 2 || board[j + 1][i - j - 1] == 4) {
+						tempcontdiag3[tempindex].startx = j - temp + 2;
+						tempcontdiag3[tempindex].starty = i - j + temp - 2;
+						tempcontdiag3[tempindex].endx = j + 1;
+						tempcontdiag3[tempindex].endy = i - j - 1;
+						tempcontdiag3[tempindex].color = 2;
+						tempcontdiag3[tempindex++].length = temp;
+						temp = 1;
+					}
+				}
+				continue;
+				break;
+			case 1:
+			case 3:
+				if (board[j + 1][i - j - 1] == 1 || board[j + 1][i - j - 1] == 3) {
+					temp++;
+					if (j == i - 1 && temp != 1) {
+						tempcontdiag3[tempindex].startx = j - temp + 2;
+						tempcontdiag3[tempindex].starty = i - j + temp - 2;
+						tempcontdiag3[tempindex].endx = j + 1;
+						tempcontdiag3[tempindex].endy = i - j - 1;
+						tempcontdiag3[tempindex].color = 1;
+						tempcontdiag3[tempindex++].length = temp;
+						temp = 1;
+					}
+				}
+				else {
+					tempcontdiag3[tempindex].startx = j - temp + 1;
+					tempcontdiag3[tempindex].starty = i - j + temp - 1;
+					tempcontdiag3[tempindex].endx = j;
+					tempcontdiag3[tempindex].endy = i - j;
+					tempcontdiag3[tempindex].color = 1;
+					tempcontdiag3[tempindex++].length = temp;
+					temp = 1;
+				}
+				break;
+			case 2:
+			case 4:
+				if (board[j + 1][i - j - 1] == 2 || board[j + 1][i - j - 1] == 4) {
+					temp++;
+					if (j == i - 1 && temp != 1) {
+						tempcontdiag3[tempindex].startx = j - temp + 2;
+						tempcontdiag3[tempindex].starty = i - j + temp - 2;
+						tempcontdiag3[tempindex].endx = j + 1;
+						tempcontdiag3[tempindex].endy = i - j - 1;
+						tempcontdiag3[tempindex].color = 2;
+						tempcontdiag3[tempindex++].length = temp;
+						temp = 1;
+					}
+				}
+				else {
+					tempcontdiag3[tempindex].startx = j - temp + 1;
+					tempcontdiag3[tempindex].starty = i - j + temp - 1;
+					tempcontdiag3[tempindex].endx = j;
+					tempcontdiag3[tempindex].endy = i - j;
+					tempcontdiag3[tempindex].color = 2;
+					tempcontdiag3[tempindex++].length = temp;
+					temp = 1;
+				}
+				break;
+			}
+		}
+		temp = 1;
+	}
 
 
 
 
+	for (int i = 0; tempcontdiag3[i].length != 0; i++) {						//tempcontdiag3에 저장되어 있는 연속돌 중에서 length가 max인 값을 저장
+		if (tempcontdiag3[i].length > max) {
+			max = tempcontdiag3[i].length;
+		}
+	}
+
+	for (int i = 0; tempcontdiag3[i + 1].length != 0; i++) {					//tempcontdiag3에 저장되어 있는 연속 돌 중에서 빈칸포함해서 max인 값 저장
+		if (tempcontdiag3[i].endx + 2 == tempcontdiag3[i + 1].startx && tempcontdiag3[i].endy - 2 == tempcontdiag3[i + 1].starty && tempcontdiag3[i].color == tempcontdiag3[i + 1].color && board[tempcontdiag3[i].endx + 1][tempcontdiag3[i].endy - 1] == 0)
+			if (tempcontdiag3[i].length + tempcontdiag3[i + 1].length > max)
+				max = tempcontdiag3[i].length + tempcontdiag3[i + 1].length;
+	}
+
+
+
+	//대각선 4
+	contStone tempcontdiag4[50] = { 0 };
+	tempindex = 0;
+
+	temp = 1;
+
+	for (int i = 1; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↘2 대각선에서 1개 이상 연속인 돌의 정보를 저장
+		for (int j = 0; j < size - 1 - i; j++) {
+			switch (board[i + j][size - 1 - j]) {
+			case 0:
+				if (j == size - 2 - i) {
+					if (board[i + j + 1][size - 2 - j] == 1 || board[i + j + 1][size - 2 - j] == 3) {
+						tempcontdiag4[tempindex].startx = i + j - temp + 2;
+						tempcontdiag4[tempindex].starty = size - 1 - j + temp - 2;
+						tempcontdiag4[tempindex].endx = i + j + 1;
+						tempcontdiag4[tempindex].endy = size - 1 - j - 1;
+						tempcontdiag4[tempindex].color = 1;
+						tempcontdiag4[tempindex++].length = temp;
+						temp = 1;
+					}
+					else if (board[i + j + 1][size - 2 - j] == 2 || board[i + j + 1][size - 2 - j] == 4) {
+						tempcontdiag4[tempindex].startx = i + j - temp + 2;
+						tempcontdiag4[tempindex].starty = size - 1 - j + temp - 2;
+						tempcontdiag4[tempindex].endx = i + j + 1;
+						tempcontdiag4[tempindex].endy = size - 1 - j - 1;
+						tempcontdiag4[tempindex].color = 2;
+						tempcontdiag4[tempindex++].length = temp;
+						temp = 1;
+					}
+				}
+				continue;
+				break;
+			case 1:
+			case 3:
+				if (board[i + j + 1][size - 2 - j] == 1 || board[i + j + 1][size - 2 - j] == 3) {
+					temp++;
+					if (j == i - 1 && temp != 1) {
+						tempcontdiag4[tempindex].startx = i + j - temp + 2;
+						tempcontdiag4[tempindex].starty = size - 1 - j + temp - 2;
+						tempcontdiag4[tempindex].endx = i + j + 1;
+						tempcontdiag4[tempindex].endy = size - 1 - j - 1;
+						tempcontdiag4[tempindex].color = 1;
+						tempcontdiag4[tempindex++].length = temp;
+						temp = 1;
+					}
+				}
+				else {
+					tempcontdiag4[tempindex].startx = i + j - temp + 1;
+					tempcontdiag4[tempindex].starty = size - 1 - j + temp - 1;
+					tempcontdiag4[tempindex].endx = i + j;
+					tempcontdiag4[tempindex].endy = size - 1 - j;
+					tempcontdiag4[tempindex].color = 1;
+					tempcontdiag4[tempindex++].length = temp;
+					temp = 1;
+				}
+				break;
+			case 2:
+			case 4:
+				if (board[i + j + 1][size - 2 - j] == 2 || board[i + j + 1][size - 2 - j] == 4) {
+					temp++;
+					if (j == i - 1 && temp != 1) {
+						tempcontdiag4[tempindex].startx = i + j - temp + 2;
+						tempcontdiag4[tempindex].starty = size - 1 - j + temp - 2;
+						tempcontdiag4[tempindex].endx = i + j + 1;
+						tempcontdiag4[tempindex].endy = size - 1 - j - 1;
+						tempcontdiag4[tempindex].color = 2;
+						tempcontdiag4[tempindex++].length = temp;
+						temp = 1;
+					}
+				}
+				else {
+					tempcontdiag4[tempindex].startx = i + j - temp + 1;
+					tempcontdiag4[tempindex].starty = size - 1 - j + temp - 1;
+					tempcontdiag4[tempindex].endx = i + j;
+					tempcontdiag4[tempindex].endy = size - 1 - j;
+					tempcontdiag4[tempindex].color = 2;
+					tempcontdiag4[tempindex++].length = temp;
+					temp = 1;
+				}
+				break;
+			}
+		}
+		temp = 1;
+	}
 
 
 
 
+	for (int i = 0; tempcontdiag4[i].length != 0; i++) {						//tempcontdiag4에 저장되어 있는 연속돌 중에서 length가 max인 값을 저장
+		if (tempcontdiag4[i].length > max) {
+			max = tempcontdiag4[i].length;
+		}
+	}
+
+	for (int i = 0; tempcontdiag4[i + 1].length != 0; i++) {					//tempcontdiag4에 저장되어 있는 연속 돌 중에서 빈칸포함해서 max인 값 저장
+		if (tempcontdiag4[i].endx + 2 == tempcontdiag4[i + 1].startx && tempcontdiag4[i].endy - 2 == tempcontdiag4[i + 1].starty && tempcontdiag4[i].color == tempcontdiag4[i + 1].color && board[tempcontdiag4[i].endx + 1][tempcontdiag4[i].endy - 1] == 0)
+			if (tempcontdiag4[i].length + tempcontdiag4[i + 1].length > max)
+				max = tempcontdiag4[i].length + tempcontdiag4[i + 1].length;
+	}
 
 
 
@@ -1120,464 +1313,45 @@ contStone* maxcontview()
 		}
 	}
 
+	if (max > 1) {
+		for (int i = 0; tempcontdiag3[i].length != 0; i++) {						//tempcontdiag3에 저장되어 있는 연속 돌 중에서 length가 max인 데이터와 빈칸포함해서 max인 데이터 저장
+			if (tempcontdiag3[i].length == max) {
+				Stonedata[dataindex++] = tempcontdiag3[i];
+			}
+			else if (tempcontdiag3[i + 1].length == 0)
+				break;
+			else if (tempcontdiag3[i].endx + 2 == tempcontdiag3[i + 1].startx && tempcontdiag3[i].endy - 2 == tempcontdiag3[i + 1].starty && tempcontdiag3[i].color == tempcontdiag3[i + 1].color && board[tempcontdiag3[i].endx + 1][tempcontdiag3[i].endy - 1] == 0 && tempcontdiag3[i].length + tempcontdiag3[i + 1].length == max) {
+				Stonedata[dataindex].startx = tempcontdiag3[i].startx;
+				Stonedata[dataindex].starty = tempcontdiag3[i].starty;
+				Stonedata[dataindex].endx = tempcontdiag3[i + 1].endx;
+				Stonedata[dataindex].endy = tempcontdiag3[i + 1].endy;
+				Stonedata[dataindex].color = tempcontdiag3[i].color;
+				Stonedata[dataindex].length = tempcontdiag3[i].length + tempcontdiag3[i + 1].length;
+				Stonedata[dataindex++].isempty = 1;
+			}
+		}
+	}
+
+	if (max > 1) {
+		for (int i = 0; tempcontdiag4[i].length != 0; i++) {						//tempcontdiag4에 저장되어 있는 연속 돌 중에서 length가 max인 데이터와 빈칸포함해서 max인 데이터 저장
+			if (tempcontdiag4[i].length == max) {
+				Stonedata[dataindex++] = tempcontdiag4[i];
+			}
+			else if (tempcontdiag4[i + 1].length == 0)
+				break;
+			else if (tempcontdiag4[i].endx + 2 == tempcontdiag4[i + 1].startx && tempcontdiag4[i].endy - 2 == tempcontdiag4[i + 1].starty && tempcontdiag4[i].color == tempcontdiag4[i + 1].color && board[tempcontdiag4[i].endx + 1][tempcontdiag4[i].endy - 1] == 0 && tempcontdiag4[i].length + tempcontdiag4[i + 1].length == max) {
+				Stonedata[dataindex].startx = tempcontdiag4[i].startx;
+				Stonedata[dataindex].starty = tempcontdiag4[i].starty;
+				Stonedata[dataindex].endx = tempcontdiag4[i + 1].endx;
+				Stonedata[dataindex].endy = tempcontdiag4[i + 1].endy;
+				Stonedata[dataindex].color = tempcontdiag4[i].color;
+				Stonedata[dataindex].length = tempcontdiag4[i].length + tempcontdiag4[i + 1].length;
+				Stonedata[dataindex++].isempty = 1;
+			}
+		}
+	}
 
 	return Stonedata;
-
-
-
-
-
-	//int temp = 1, max = 0;
-
-
-	//for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 전체 가로줄에서 연속된 돌의 최대값을 구해준다.
-	//	for (int j = 0; j < size - 1; j++) {
-	//		switch (board[i][j]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//			if (board[i][j + 1] == 1) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//			if (board[i][j + 1] == 2) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-
-	//for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 전체 세로줄에서 연속된 돌의 최대값을 구해준다.
-	//	for (int j = 0; j < size - 1; j++) {
-	//		switch (board[j][i]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//			if (board[j + 1][i] == 1) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//			if (board[j + 1][i] == 2) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-
-	//for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↘1대각선에서 연속된 돌의 최대값을 구해준다.
-	//	for (int j = 0; j < i; j++) {
-	//		switch (board[size - 1 - i + j][j]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//			if (board[size - i + j][j + 1] == 1) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//			if (board[size - i + j][j + 1] == 2) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-
-	//for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↘2대각선에서 연속된 돌의 최대값을 구해준다.
-	//	for (int j = 0; j < size - i - 1; j++) {
-	//		switch (board[j][j + i]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//			if (board[j + 1][j + i + 1] == 1) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//			if (board[j + 1][j + i + 1] == 2) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-
-	//for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↙1대각선에서 연속된 돌의 최대값을 구해준다.
-	//	for (int j = 0; j < i; j++) {
-	//		switch (board[j][i - j]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//			if (board[j + 1][i - j - 1] == 1) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//			if (board[j + 1][i - j - 1] == 2) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-
-	//for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↙2대각선에서 연속된 돌의 최대값을 구해준다.
-	//	for (int j = 0; j < size - i - 1; j++) {
-	//		switch (board[i + j][size - 1 - j]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//			if (board[i + j + 1][size - 2 - j] == 1) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//			if (board[i + j + 1][size - 2 - j] == 2) {
-	//				temp++;
-	//				if (temp > max)
-	//					max = temp;
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-
-
-	//for (int i = 0; i < size; i++) {				//구한 최대값을 기반으로, 다시 한바퀴 돌면서 전체 가로에서 연속된 돌의 개수가 최대인것의 모양을 바꿔준다.
-	//	for (int j = 0; j < size - 1; j++)
-	//	{
-	//		switch (board[i][j]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//		case 3:
-	//			if (board[i][j + 1] == 1 || board[i][j + 1] == 3) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[i][j - max + 2 + k] == 0)
-	//							;
-	//						else if (board[i][j - max + 2 + k] < 3)
-	//							board[i][j - max + 2 + k] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//		case 4:
-	//			if (board[i][j + 1] == 2 || board[i][j + 1] == 4) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[i][j - max + 2 + k] == 0)
-	//							;
-	//						else if (board[i][j - max + 2 + k] < 3)
-	//							board[i][j - max + 2 + k] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-
-	//for (int i = 0; i < size; i++) {				//구한 최대값을 기반으로, 다시 한바퀴 돌면서 전체 세로에서 연속된 돌의 개수가 최대인것의 모양을 바꿔준다.
-	//	for (int j = 0; j < size - 1; j++)
-	//	{
-	//		switch (board[j][i]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//		case 3:
-	//			if (board[j + 1][i] == 1 || board[j + 1][i] == 3) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[j - max + 2 + k][i] == 0)
-	//							;
-	//						else if (board[j - max + 2 + k][i] < 3)
-	//							board[j - max + 2 + k][i] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//		case 4:
-	//			if (board[j + 1][i] == 2 || board[j + 1][i] == 4) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[j - max + 2 + k][i] == 0)
-	//							;
-	//						else if (board[j - max + 2 + k][i] < 3)
-	//							board[j - max + 2 + k][i] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-
-
-
-	//for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↘1대각선에서 연속된 돌의 모양변경
-	//	for (int j = 0; j < i; j++) {
-	//		switch (board[size - 1 - i + j][j]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//		case 3:
-	//			if (board[size - i + j][j + 1] == 1 || board[size - i + j][j + 1] == 3) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[size - i + j - max + k + 1][j - max + 2 + k] == 0)
-	//							;
-	//						else if (board[size - i + j - max + k + 1][j - max + 2 + k] < 3)
-	//							board[size - i + j - max + k + 1][j - max + 2 + k] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;					
-	//			break;
-	//		case 2:
-	//		case 4:
-	//			if (board[size - i + j][j + 1] == 2 || board[size - i + j][j + 1] == 4){
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[size - i + j - max + k + 1][j - max + 2 + k] == 0)
-	//							;
-	//						else if (board[size - i + j - max + k + 1][j - max + 2 + k] < 3)
-	//							board[size - i + j - max + k + 1][j - max + 2 + k] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-
-	//for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↘2대각선에서 연속된 돌의 모양변경
-	//	for (int j = 0; j < size - i - 1; j++) {
-	//		switch (board[j][j + i]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//		case 3:
-	//			if (board[j + 1][j + i + 1] == 1 || board[j + 1][j + i + 1] == 3) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[j - max + 2 + k][i + j - max + 2 + k] == 0)
-	//							;
-	//						else if (board[j - max + 2 + k][i + j - max + 2 + k] < 3)
-	//							board[j - max + 2 + k][i + j - max + 2 + k] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//		case 4:
-	//			if (board[j + 1][j + i + 1] == 2 || board[j + 1][j + i + 1] == 4) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[j - max + 2 + k][i + j - max + 2 + k] == 0)
-	//							;
-	//						else if (board[j - max + 2 + k][i + j - max + 2 + k] < 3)
-	//							board[j - max + 2 + k][i + j - max + 2 + k] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-
-	//for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↙1대각선에서 연속된 돌의 모양변경
-	//	for (int j = 0; j < i; j++) {
-	//		switch (board[j][i - j]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//		case 3:
-	//			if (board[j + 1][i - j - 1] == 1 || board[j + 1][i - j - 1] == 3) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[j - max + 2 + k][i - j + max - 2 - k] == 0)
-	//							;
-	//						else if (board[j - max + 2 + k][i - j + max - 2 - k] < 3)
-	//							board[j - max + 2 + k][i - j + max - 2 - k] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//		case 4:
-	//			if (board[j + 1][i - j - 1] == 2 || board[j + 1][i - j - 1] == 4) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[j - max + 2 + k][i - j + max - 2 - k] == 0)
-	//							;
-	//						else if (board[j - max + 2 + k][i - j + max - 2 - k] < 3)
-	//							board[j - max + 2 + k][i - j + max - 2 - k] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
-	//
-	//for (int i = 0; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↙2대각선에서 연속된 돌의 모양변경
-	//	for (int j = 0; j < size - i - 1; j++) {
-	//		switch (board[i + j][size - 1 - j]) {
-	//		case 0:
-	//			continue;
-	//			break;
-	//		case 1:
-	//		case 3:
-	//			if (board[i + j + 1][size - 2 - j] == 1 || board[i + j + 1][size - 2 - j] == 3) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[i + j - max + 2 + k][size - 3 - j + max - k] == 0)
-	//							;
-	//						else if (board[i + j - max + 2 + k][size - 3 - j + max - k] < 3)
-	//							board[i + j - max + 2 + k][size - 3 - j + max - k] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		case 2:
-	//		case 4:
-	//			if (board[i + j + 1][size - 2 - j] == 2 || board[i + j + 1][size - 2 - j] == 4) {
-	//				temp++;
-	//				if (temp == max) {
-	//					for (int k = 0; k < max; k++) {
-	//						if (board[i + j - max + 2 + k][size - 3 - j + max - k] == 0)
-	//							;
-	//						else if (board[i + j - max + 2 + k][size - 3 - j + max - k] < 3)
-	//							board[i + j - max + 2 + k][size - 3 - j + max - k] += 2;
-	//					}
-	//					temp = 1;
-	//				}
-	//			}
-	//			else
-	//				temp = 1;
-	//			break;
-	//		}
-	//	}
-	//	temp = 1;
-	//}
 
 }
 
@@ -1629,6 +1403,15 @@ void changeStone(contStone* data)
 					;
 				else if (board[x + j][y + j] < 3)
 					board[x + j][y + j] += 2;
+			}
+			break;
+
+		case 4:
+			for (int j = 0; j < reallen; j++) {
+				if (board[x + j][y - j] == 0)
+					;
+				else if (board[x + j][y - j] < 3)
+					board[x + j][y - j] += 2;
 			}
 			break;
 
