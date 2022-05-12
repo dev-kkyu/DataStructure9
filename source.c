@@ -1188,7 +1188,7 @@ contStone* maxcontview(char option)
 
 	temp = 1;
 
-	for (int i = 1; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↘2 대각선에서 1개 이상 연속인 돌의 정보를 저장
+	for (int i = 1; i < size; i++) {			//흰돌, 검은돌 상관 없이 ↙2 대각선에서 1개 이상 연속인 돌의 정보를 저장
 		for (int j = 0; j < size - 1 - i; j++) {
 			switch (board[i + j][size - 1 - j]) {
 			case 0:
@@ -1219,7 +1219,7 @@ contStone* maxcontview(char option)
 			case 3:
 				if (board[i + j + 1][size - 2 - j] == 1 || board[i + j + 1][size - 2 - j] == 3) {
 					temp++;
-					if (j == i - 1 && temp != 1) {
+					if (j == size - 2 - i && temp != 1) {
 						tempcontdiag4[tempindex].startx = i + j - temp + 2;
 						tempcontdiag4[tempindex].starty = size - 1 - j + temp - 2;
 						tempcontdiag4[tempindex].endx = i + j + 1;
@@ -1243,7 +1243,7 @@ contStone* maxcontview(char option)
 			case 4:
 				if (board[i + j + 1][size - 2 - j] == 2 || board[i + j + 1][size - 2 - j] == 4) {
 					temp++;
-					if (j == i - 1 && temp != 1) {
+					if (j == size - 2 - i && temp != 1) {
 						tempcontdiag4[tempindex].startx = i + j - temp + 2;
 						tempcontdiag4[tempindex].starty = size - 1 - j + temp - 2;
 						tempcontdiag4[tempindex].endx = i + j + 1;
@@ -1643,7 +1643,7 @@ void checkstop(contStone* data)
 
 		switch (menu) {
 		case 1:
-			if (data[i].starty != 0 && data[i].endy != size - 1 && (data[i].length == 3 || data[i].length == 4) && board[data[i].startx][data[i].starty - 1] == 0 && board[data[i].endx][data[i].endy + 1] == 0) {
+			if (data[i].starty != 0 && data[i].endy != size - 1 && (data[i].length == 3 || data[i].length == 4) && (board[data[i].startx][data[i].starty - 1] == 0 || board[data[i].startx][data[i].starty - 1] == 5) && (board[data[i].endx][data[i].endy + 1] == 0 || board[data[i].endx][data[i].endy + 1] == 5)) {
 				if (data[i].length == reallen) {
 					board[data[i].startx][data[i].starty - 1] = 5;
 					board[data[i].startx][data[i].endy + 1] = 5;
@@ -1659,7 +1659,7 @@ void checkstop(contStone* data)
 			}
 			break;
 		case 2:
-			if (data[i].startx != 0 && data[i].endx != size - 1 && (data[i].length == 3 || data[i].length == 4) && board[data[i].startx - 1][data[i].starty] == 0 && board[data[i].endx + 1][data[i].endy] == 0) {
+			if (data[i].startx != 0 && data[i].endx != size - 1 && (data[i].length == 3 || data[i].length == 4) && (board[data[i].startx - 1][data[i].starty] == 0 || board[data[i].startx - 1][data[i].starty] == 5) && (board[data[i].endx + 1][data[i].endy] == 0 || board[data[i].endx + 1][data[i].endy] == 5)) {
 				if (data[i].length == reallen) {
 					board[data[i].startx - 1][data[i].starty] = 5;
 					board[data[i].endx + 1][data[i].starty] = 5;
@@ -1677,7 +1677,7 @@ void checkstop(contStone* data)
 
 
 		case 3:
-			if (data[i].startx != 0 && data[i].starty != 0 && data[i].endx != size - 1 && data[i].endy != size - 1 && (data[i].length == 3 || data[i].length == 4) && board[data[i].startx - 1][data[i].starty - 1] == 0 && board[data[i].endx + 1][data[i].endy + 1] == 0) {
+			if (data[i].startx != 0 && data[i].starty != 0 && data[i].endx != size - 1 && data[i].endy != size - 1 && (data[i].length == 3 || data[i].length == 4) && (board[data[i].startx - 1][data[i].starty - 1] == 0 || board[data[i].startx - 1][data[i].starty - 1] == 5) && (board[data[i].endx + 1][data[i].endy + 1] == 0 || board[data[i].endx + 1][data[i].endy + 1] == 5)) {
 				if (data[i].length == reallen) {
 					board[data[i].startx - 1][data[i].starty - 1] = 5;
 					board[data[i].endx + 1][data[i].endy + 1] = 5;
@@ -1694,7 +1694,7 @@ void checkstop(contStone* data)
 			break;
 
 		case 4:
-			if (data[i].startx != 0 && data[i].starty != size - 1 && data[i].endx != size - 1 && data[i].endy != 0 && (data[i].length == 3 || data[i].length == 4) && board[data[i].startx - 1][data[i].starty + 1] == 0 && board[data[i].endx + 1][data[i].endy - 1] == 0) {
+			if (data[i].startx != 0 && data[i].starty != size - 1 && data[i].endx != size - 1 && data[i].endy != 0 && (data[i].length == 3 || data[i].length == 4) && (board[data[i].startx - 1][data[i].starty + 1] == 0 || board[data[i].startx - 1][data[i].starty + 1] == 5) && (board[data[i].endx + 1][data[i].endy - 1] == 0 || board[data[i].endx + 1][data[i].endy - 1] == 5)) {
 				if (data[i].length == reallen) {
 					board[data[i].startx - 1][data[i].starty + 1] = 5;
 					board[data[i].endx + 1][data[i].endy - 1] = 5;
