@@ -1415,18 +1415,18 @@ contStone* maxcontview(char option)
 			if (tempcontrow[i].length == 3 || tempcontrow[i].length == 4)
 				Stonedata[dataindex++] = tempcontrow[i];
 		}
-		for (int i = 0; tempcontrow[i + 1].length != 0; i++) {					
-			if (tempcontrow[i].endx == tempcontrow[i + 1].endx && tempcontrow[i].endy + 2 == tempcontrow[i + 1].starty && tempcontrow[i].color == tempcontrow[i + 1].color && (board[tempcontrow[i].endx][tempcontrow[i].endy + 1] == 0 || board[tempcontrow[i].endx][tempcontrow[i].endy + 1] == 5)) {
+		for (int i = 0; tempcontrow[i + 1].length != 0; i++) {
+			if (tempcontrow[i].endx == tempcontrow[i + 1].endx && tempcontrow[i].endy + 2 == tempcontrow[i + 1].starty && tempcontrow[i].color == tempcontrow[i + 1].color && (board[tempcontrow[i].endx][tempcontrow[i].endy + 1] == 0 || board[tempcontrow[i].endx][tempcontrow[i].endy + 1] == 5) && (tempcontrow[i].length + tempcontrow[i + 1].length == 3 || tempcontrow[i].length + tempcontrow[i + 1].length == 4)) {
 				contStone add = { 0 };
-				add.startx = tempcontrow[i].startx;
-				add.starty = tempcontrow[i].starty;
-				add.endx = tempcontrow[i].endx;
-				add.endy = tempcontrow[i + 1].endy;
-				add.color = tempcontrow[i].color;
-				add.length = tempcontrow[i].length + tempcontrow[i + 1].length;
-				add.isempty = 1;
+					add.startx = tempcontrow[i].startx;
+					add.starty = tempcontrow[i].starty;
+					add.endx = tempcontrow[i].endx;
+					add.endy = tempcontrow[i + 1].endy;
+					add.color = tempcontrow[i].color;
+					add.length = tempcontrow[i].length + tempcontrow[i + 1].length;
+					add.isempty = 1;
 
-				Stonedata[dataindex++] = add;
+					Stonedata[dataindex++] = add;
 			}
 		}
 
@@ -1435,8 +1435,8 @@ contStone* maxcontview(char option)
 			if (tempcontcol[i].length == 3 || tempcontcol[i].length == 4)
 				Stonedata[dataindex++] = tempcontcol[i];
 		}
-		for (int i = 0; tempcontcol[i + 1].length != 0; i++) {					
-			if (tempcontcol[i].endy == tempcontcol[i + 1].endy && tempcontcol[i].endx + 2 == tempcontcol[i + 1].startx && tempcontcol[i].color == tempcontcol[i + 1].color && (board[tempcontcol[i].endx + 1][tempcontcol[i].endy] == 0 || board[tempcontcol[i].endx + 1][tempcontcol[i].endy] == 5)) {
+		for (int i = 0; tempcontcol[i + 1].length != 0; i++) {
+			if (tempcontcol[i].endy == tempcontcol[i + 1].endy && tempcontcol[i].endx + 2 == tempcontcol[i + 1].startx && tempcontcol[i].color == tempcontcol[i + 1].color && (board[tempcontcol[i].endx + 1][tempcontcol[i].endy] == 0 || board[tempcontcol[i].endx + 1][tempcontcol[i].endy] == 5) && (tempcontcol[i].length + tempcontcol[i + 1].length == 3 || tempcontcol[i].length + tempcontcol[i + 1].length == 4)) {
 				contStone add = { 0 };
 				add.startx = tempcontcol[i].startx;
 				add.starty = tempcontcol[i].starty;
@@ -1456,7 +1456,7 @@ contStone* maxcontview(char option)
 				Stonedata[dataindex++] = tempcontdiag1[i];
 		}
 		for (int i = 0; tempcontdiag1[i + 1].length != 0; i++) {
-			if (tempcontdiag1[i].endx + 2 == tempcontdiag1[i + 1].startx && tempcontdiag1[i].endy + 2 == tempcontdiag1[i + 1].starty && tempcontdiag1[i].color == tempcontdiag1[i + 1].color && (board[tempcontdiag1[i].endx + 1][tempcontdiag1[i].endy + 1] == 0 || board[tempcontdiag1[i].endx + 1][tempcontdiag1[i].endy + 1] == 5)) {
+			if (tempcontdiag1[i].endx + 2 == tempcontdiag1[i + 1].startx && tempcontdiag1[i].endy + 2 == tempcontdiag1[i + 1].starty && tempcontdiag1[i].color == tempcontdiag1[i + 1].color && (board[tempcontdiag1[i].endx + 1][tempcontdiag1[i].endy + 1] == 0 || board[tempcontdiag1[i].endx + 1][tempcontdiag1[i].endy + 1] == 5) && (tempcontdiag1[i].length + tempcontdiag1[i + 1].length == 3 || tempcontdiag1[i].length + tempcontdiag1[i + 1].length == 4)) {
 				contStone add = { 0 };
 				add.startx = tempcontdiag1[i].startx;
 				add.starty = tempcontdiag1[i].starty;
@@ -1469,14 +1469,14 @@ contStone* maxcontview(char option)
 				Stonedata[dataindex++] = add;
 			}
 		}
-		
+
 		//tempcontdiag2
 		for (int i = 0; tempcontdiag2[i].length != 0; i++) {
 			if (tempcontdiag2[i].length == 3 || tempcontdiag2[i].length == 4)
 				Stonedata[dataindex++] = tempcontdiag2[i];
 		}
 		for (int i = 0; tempcontdiag2[i + 1].length != 0; i++) {
-			if (tempcontdiag2[i].endx + 2 == tempcontdiag2[i + 1].startx && tempcontdiag2[i].endy + 2 == tempcontdiag2[i + 1].starty && tempcontdiag2[i].color == tempcontdiag2[i + 1].color && (board[tempcontdiag2[i].endx + 1][tempcontdiag2[i].endy + 1] == 0 || board[tempcontdiag2[i].endx + 1][tempcontdiag2[i].endy + 1] == 5)) {
+			if (tempcontdiag2[i].endx + 2 == tempcontdiag2[i + 1].startx && tempcontdiag2[i].endy + 2 == tempcontdiag2[i + 1].starty && tempcontdiag2[i].color == tempcontdiag2[i + 1].color && (board[tempcontdiag2[i].endx + 1][tempcontdiag2[i].endy + 1] == 0 || board[tempcontdiag2[i].endx + 1][tempcontdiag2[i].endy + 1] == 5) && (tempcontdiag2[i].length + tempcontdiag2[i + 1].length == 3 || tempcontdiag2[i].length + tempcontdiag2[i + 1].length == 4)) {
 				contStone add = { 0 };
 				add.startx = tempcontdiag2[i].startx;
 				add.starty = tempcontdiag2[i].starty;
@@ -1496,7 +1496,7 @@ contStone* maxcontview(char option)
 				Stonedata[dataindex++] = tempcontdiag3[i];
 		}
 		for (int i = 0; tempcontdiag3[i + 1].length != 0; i++) {
-			if (tempcontdiag3[i].endx + 2 == tempcontdiag3[i + 1].startx && tempcontdiag3[i].endy - 2 == tempcontdiag3[i + 1].starty && tempcontdiag3[i].color == tempcontdiag3[i + 1].color && (board[tempcontdiag3[i].endx + 1][tempcontdiag3[i].endy - 1] == 0 || board[tempcontdiag3[i].endx + 1][tempcontdiag3[i].endy - 1] == 5)) {
+			if (tempcontdiag3[i].endx + 2 == tempcontdiag3[i + 1].startx && tempcontdiag3[i].endy - 2 == tempcontdiag3[i + 1].starty && tempcontdiag3[i].color == tempcontdiag3[i + 1].color && (board[tempcontdiag3[i].endx + 1][tempcontdiag3[i].endy - 1] == 0 || board[tempcontdiag3[i].endx + 1][tempcontdiag3[i].endy - 1] == 5) && (tempcontdiag3[i].length + tempcontdiag3[i + 1].length == 3 || tempcontdiag3[i].length + tempcontdiag3[i + 1].length == 4)) {
 				contStone add = { 0 };
 				add.startx = tempcontdiag3[i].startx;
 				add.starty = tempcontdiag3[i].starty;
@@ -1516,7 +1516,7 @@ contStone* maxcontview(char option)
 				Stonedata[dataindex++] = tempcontdiag4[i];
 		}
 		for (int i = 0; tempcontdiag4[i + 1].length != 0; i++) {
-			if (tempcontdiag4[i].endx + 2 == tempcontdiag4[i + 1].startx && tempcontdiag4[i].endy - 2 == tempcontdiag4[i + 1].starty && tempcontdiag4[i].color == tempcontdiag4[i + 1].color && (board[tempcontdiag4[i].endx + 1][tempcontdiag4[i].endy - 1] == 0 || board[tempcontdiag4[i].endx + 1][tempcontdiag4[i].endy - 1] == 5)) {
+			if (tempcontdiag4[i].endx + 2 == tempcontdiag4[i + 1].startx && tempcontdiag4[i].endy - 2 == tempcontdiag4[i + 1].starty && tempcontdiag4[i].color == tempcontdiag4[i + 1].color && (board[tempcontdiag4[i].endx + 1][tempcontdiag4[i].endy - 1] == 0 || board[tempcontdiag4[i].endx + 1][tempcontdiag4[i].endy - 1] == 5) && (tempcontdiag4[i].length + tempcontdiag4[i + 1].length == 3 || tempcontdiag4[i].length + tempcontdiag4[i + 1].length == 4)) {
 				contStone add = { 0 };
 				add.startx = tempcontdiag4[i].startx;
 				add.starty = tempcontdiag4[i].starty;
@@ -1631,6 +1631,8 @@ void checkstop(contStone* data)
 		int temp1 = (data[i].endx - data[i].startx) / (reallen - 1);
 		int temp2 = (data[i].endy - data[i].starty) / (reallen - 1);
 
+		int colortemp = count % 2 + 1;
+
 		if (temp1 == 0 && temp2 == 1)
 			menu = 1;							//°¡·Î
 		else if (temp1 == 1 && temp2 == 0)
@@ -1643,12 +1645,8 @@ void checkstop(contStone* data)
 
 		switch (menu) {
 		case 1:
-			if (data[i].starty != 0 && data[i].endy != size - 1 && (data[i].length == 3 || data[i].length == 4) && (board[data[i].startx][data[i].starty - 1] == 0 || board[data[i].startx][data[i].starty - 1] == 5) && (board[data[i].endx][data[i].endy + 1] == 0 || board[data[i].endx][data[i].endy + 1] == 5)) {
-				if (data[i].length == reallen) {
-					board[data[i].startx][data[i].starty - 1] = 5;
-					board[data[i].startx][data[i].endy + 1] = 5;
-				}
-				else {
+			if (data[i].color == colortemp) {
+				if (data[i].isempty) {
 					for (int j = data[i].starty; j < reallen + data[i].starty; j++) {
 						if (board[data[i].startx][j] == 0) {
 							board[data[i].startx][j] = 5;
@@ -1656,15 +1654,25 @@ void checkstop(contStone* data)
 						}
 					}
 				}
+				else {
+					if (data[i].length == 3) {
+						if (data[i].starty != 0 && data[i].endy != size - 1 && (board[data[i].startx][data[i].starty - 1] == 0 || board[data[i].startx][data[i].starty - 1] == 5) && (board[data[i].endx][data[i].endy + 1] == 0 || board[data[i].endx][data[i].endy + 1] == 5)) {
+							board[data[i].startx][data[i].starty - 1] = 5;
+							board[data[i].endx][data[i].endy + 1] = 5;
+						}
+					}
+					else if (data[i].length == 4) {
+						if (data[i].starty != 0 && board[data[i].startx][data[i].starty - 1] == 0)
+							board[data[i].startx][data[i].starty - 1] = 5;
+						if (data[i].endy != size - 1 && board[data[i].endx][data[i].endy + 1] == 0)
+							board[data[i].endx][data[i].endy + 1] = 5;
+					}
+				}
 			}
 			break;
 		case 2:
-			if (data[i].startx != 0 && data[i].endx != size - 1 && (data[i].length == 3 || data[i].length == 4) && (board[data[i].startx - 1][data[i].starty] == 0 || board[data[i].startx - 1][data[i].starty] == 5) && (board[data[i].endx + 1][data[i].endy] == 0 || board[data[i].endx + 1][data[i].endy] == 5)) {
-				if (data[i].length == reallen) {
-					board[data[i].startx - 1][data[i].starty] = 5;
-					board[data[i].endx + 1][data[i].starty] = 5;
-				}
-				else {
+			if (data[i].color == colortemp) {
+				if (data[i].isempty) {
 					for (int j = data[i].startx; j < reallen + data[i].startx; j++) {
 						if (board[j][data[i].starty] == 0) {
 							board[j][data[i].starty] = 5;
@@ -1672,17 +1680,27 @@ void checkstop(contStone* data)
 						}
 					}
 				}
+				else {
+					if (data[i].length == 3) {
+						if (data[i].startx != 0 && data[i].endx != size - 1 && (board[data[i].startx - 1][data[i].starty] == 0 || board[data[i].startx - 1][data[i].starty] == 5) && (board[data[i].endx + 1][data[i].endy] == 0 || board[data[i].endx + 1][data[i].endy] == 5)) {
+							board[data[i].startx - 1][data[i].starty] = 5;
+							board[data[i].endx + 1][data[i].endy] = 5;
+						}
+					}
+					else if (data[i].length == 4) {
+						if (data[i].startx != 0 && board[data[i].startx - 1][data[i].starty] == 0)
+							board[data[i].startx - 1][data[i].starty] = 5;
+						if (data[i].endx != size - 1 && board[data[i].endx + 1][data[i].endy] == 0)
+							board[data[i].endx + 1][data[i].endy] = 5;
+					}
+				}
 			}
 			break;
 
 
 		case 3:
-			if (data[i].startx != 0 && data[i].starty != 0 && data[i].endx != size - 1 && data[i].endy != size - 1 && (data[i].length == 3 || data[i].length == 4) && (board[data[i].startx - 1][data[i].starty - 1] == 0 || board[data[i].startx - 1][data[i].starty - 1] == 5) && (board[data[i].endx + 1][data[i].endy + 1] == 0 || board[data[i].endx + 1][data[i].endy + 1] == 5)) {
-				if (data[i].length == reallen) {
-					board[data[i].startx - 1][data[i].starty - 1] = 5;
-					board[data[i].endx + 1][data[i].endy + 1] = 5;
-				}
-				else {
+			if (data[i].color == colortemp) {
+				if (data[i].isempty) {
 					for (int j = data[i].startx, k = data[i].starty; j < reallen + data[i].startx; j++, k++) {
 						if (board[j][k] == 0) {
 							board[j][k] = 5;
@@ -1690,21 +1708,45 @@ void checkstop(contStone* data)
 						}
 					}
 				}
+				else {
+					if (data[i].length == 3) {
+						if (data[i].startx != 0 && data[i].starty != 0 && data[i].endx != size - 1 && data[i].endy != size - 1 && (board[data[i].startx - 1][data[i].starty - 1] == 0 || board[data[i].startx - 1][data[i].starty - 1] == 5) && (board[data[i].endx + 1][data[i].endy + 1] == 0 || board[data[i].endx + 1][data[i].endy + 1] == 5)) {
+							board[data[i].startx - 1][data[i].starty - 1] = 5;
+							board[data[i].endx + 1][data[i].endy + 1] = 5;
+						}
+					}
+					else if (data[i].length == 4) {
+						if (data[i].startx != 0 && data[i].starty != 0 && board[data[i].startx - 1][data[i].starty - 1] == 0)
+							board[data[i].startx - 1][data[i].starty - 1] = 5;
+						if (data[i].endx != size - 1 && data[i].endy != size - 1 && board[data[i].endx + 1][data[i].endy + 1] == 0)
+							board[data[i].endx + 1][data[i].endy + 1] = 5;
+					}
+				}
 			}
 			break;
 
 		case 4:
-			if (data[i].startx != 0 && data[i].starty != size - 1 && data[i].endx != size - 1 && data[i].endy != 0 && (data[i].length == 3 || data[i].length == 4) && (board[data[i].startx - 1][data[i].starty + 1] == 0 || board[data[i].startx - 1][data[i].starty + 1] == 5) && (board[data[i].endx + 1][data[i].endy - 1] == 0 || board[data[i].endx + 1][data[i].endy - 1] == 5)) {
-				if (data[i].length == reallen) {
-					board[data[i].startx - 1][data[i].starty + 1] = 5;
-					board[data[i].endx + 1][data[i].endy - 1] = 5;
-				}
-				else {
+			if (data[i].color == colortemp) {
+				if (data[i].isempty) {
 					for (int j = data[i].startx, k = data[i].starty; j < reallen + data[i].startx; j++, k--) {
 						if (board[j][k] == 0) {
 							board[j][k] = 5;
 							break;
 						}
+					}
+				}
+				else {
+					if (data[i].length == 3) {
+						if (data[i].startx != 0 && data[i].starty != size - 1 && data[i].endx != size - 1 && data[i].endy != 0 && (board[data[i].startx - 1][data[i].starty + 1] == 0 || board[data[i].startx - 1][data[i].starty + 1] == 5) && (board[data[i].endx + 1][data[i].endy - 1] == 0 || board[data[i].endx + 1][data[i].endy - 1] == 5)) {
+							board[data[i].startx - 1][data[i].starty + 1] = 5;
+							board[data[i].endx + 1][data[i].endy - 1] = 5;
+						}
+					}
+					else if (data[i].length == 4) {
+						if (data[i].startx != 0 && data[i].starty != size - 1 && board[data[i].startx - 1][data[i].starty + 1] == 0)
+							board[data[i].startx - 1][data[i].starty + 1] = 5;
+						if (data[i].endx != size - 1 && data[i].endy != 0 && board[data[i].endx + 1][data[i].endy - 1] == 0)
+							board[data[i].endx + 1][data[i].endy - 1] = 5;
 					}
 				}
 			}
@@ -1713,8 +1755,8 @@ void checkstop(contStone* data)
 
 		default:
 			break;
-			}
 		}
+	}
 
 }
 
