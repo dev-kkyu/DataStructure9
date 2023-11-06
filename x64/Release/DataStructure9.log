@@ -1,8 +1,0 @@
-﻿  source.c
-  코드를 생성하고 있습니다.
-  Previous IPDB not found, fall back to full compilation.
-D:\Program Files\Microsoft Visual Studio\source\DataStructure9\source.c(1533): warning C4172: 지역 변수 또는 임시: Stonedata의 주소를 반환하고 있습니다.
-D:\Program Files\Microsoft Visual Studio\source\DataStructure9\source.c(1408): warning C4172: 지역 변수 또는 임시: Stonedata의 주소를 반환하고 있습니다.
-  All 32 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  코드를 생성했습니다.
-  DataStructure9.vcxproj -> D:\Program Files\Microsoft Visual Studio\source\DataStructure9\x64\Release\DataStructure9.exe
